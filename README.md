@@ -1,6 +1,6 @@
 # Selenium Py
 
-Automate Firefox web browsing with Selenium and Python 3 and Docker. 
+Automate Firefox web browsing with [Selenium](https://www.selenium.dev/) and Python 3 and Docker. 
 
 ## Requirements
 
