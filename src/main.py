@@ -5,6 +5,9 @@ from selenium import webdriver
 
 STORAGE_PATH = f'{os.getcwd()}/storage'
 
+def screenshot(browser, name='example'):
+    browser.save_screenshot(f'{STORAGE_PATH}/{name}.png')
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--bar', help='Do the bar option')
@@ -16,7 +19,7 @@ def run():
     print(args)
     browser = webdriver.Firefox()
     browser.get('http://seleniumhq.org/')
-    browser.save_screenshot(f'{STORAGE_PATH}/test.jpg')
+    screenshot(browser, 'test')
     browser.quit
     print('success')
 
