@@ -12,7 +12,7 @@ Automate Firefox web browsing with [Selenium](https://www.selenium.dev/) and Pyt
 
 Ensure Geckodriver is accessible from the global path in your operating system.
 
-On debian systems we can do that by adding the following statement to your `$HOME/.bashrc`:
+On debian systems we can do that by updating your `$HOME/.bashrc` file:
 ```
 export PATH="/usr/bin/geckodriver:$PATH"
 ```
@@ -25,7 +25,7 @@ export PATH="/usr/bin/geckodriver:$PATH"
 ```
 docker-compose up --build -d
 ```
-You will get a container named `python-docker-skeleton_selenium_1` that you can view with `docker ps -a`.
+You will get a selenium docker image that you can view with `docker ps -a`.
 
 ## Usage
 ```
