@@ -24,7 +24,6 @@ def run():
     )
     browser.get('http://seleniumhq.org/')
     screenshot(browser, 'test')
-    browser.implicitly_wait(5)
     browser.quit
     print('success')
 
