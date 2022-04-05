@@ -1,38 +1,27 @@
 # Selenium Py
 
-Automate Firefox web browsing with [Selenium](https://www.selenium.dev/) and Python 3 and Docker. 
+Automate web browsing with Chrome. 
 
 ## Requirements
 
 - [Pipenv](https://pypi.org/project/pipenv/) (*optional*)
-- [Geckodriver](https://github.com/mozilla/geckodriver/releases)
 - [Docker](https://docs.docker.com/engine/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - [Python 3](https://www.python.org/downloads/)
-
-Ensure Geckodriver is accessible from the global path in your operating system.
-
-On debian systems we can do that by updating your `$HOME/.bashrc` file:
-```
-export PATH="/usr/bin/geckodriver:$PATH"
-```
-
-[Setting path for Windows users](https://www.computerhope.com/issues/ch000549.htm)
-
 
 ## Build Selenium Container
 
 ```
 docker-compose up --build -d
 ```
-You will get a selenium docker image that you can view with `docker ps -a`.
+You will get a selenium grid that you can view at `http://localhost:4444/grid/console`.
 
 ## Usage
 ```
 pipenv install
 pipenv run python src/main.py
 ```
-On successful run you will see a firefox browser window open for `http://seleniumhq.org/`. A screenshot named `test.png` will be saved to `repo-install-location/storage`.
+A screenshot named `test.png` will be saved to `repo-install-location/storage`.
 
 This is a base from which you can continue testing with Selenium.
 

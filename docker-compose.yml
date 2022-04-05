@@ -1,5 +1,12 @@
-selenium:
-    build: .
-    ports:
-        - 4000:4000
-    privileged: true
+hub:
+  image: selenium/hub:2.53.0
+  container_name: hub
+  ports:
+    - 4444:4444
+
+chrome:
+  image: selenium/node-chrome-debug:2.53.0
+  ports:
+    - "5900"
+  links:
+    - hub:hub

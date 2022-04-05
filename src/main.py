@@ -17,9 +17,14 @@ def parse_args():
 def run():
     args = parse_args()
     print(args)
-    browser = webdriver.Firefox()
+    chrome_options = webdriver.ChromeOptions()
+    browser = webdriver.Remote(
+        command_executor='http://localhost:4444/wd/hub',
+        options=chrome_options
+    )
     browser.get('http://seleniumhq.org/')
     screenshot(browser, 'test')
+    browser.implicitly_wait(5)
     browser.quit
     print('success')
 
