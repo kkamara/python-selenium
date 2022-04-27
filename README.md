@@ -4,10 +4,18 @@ Automate web browsing with Chrome.
 
 ## Requirements
 
-- [Pipenv](https://pypi.org/project/pipenv/) (*optional*)
 - [Docker](https://docs.docker.com/engine/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - [Python 3](https://www.python.org/downloads/)
+
+## Setup
+
+```bash
+pip3 install virtualenv
+virtualenv env
+source env/bin/activate
+(env) pip3 install -r requirements.txt
+```
 
 ## Build Selenium Container
 
@@ -18,10 +26,8 @@ You will get a selenium grid that you can view at `http://localhost:4444/grid/co
 
 ## Usage
 ```
-pipenv install
-pipenv run python src/main.py
+python3 python src/main.py
 ```
-A screenshot named `test.png` will be saved to `repo-install-location/storage`.
 
 This is a base from which you can continue testing with Selenium.
 
