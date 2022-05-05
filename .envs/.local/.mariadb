@@ -1,0 +1,9 @@
+# MARIADB
+# ------------------------------------------------------------------------------
+MARIADB_ROOT_PASSWORD=secret
+MARIADB_HOST=mariadb
+MARIADB_PORT=3306
+MARIADB_DATABASE=django_app
+MARIADB_USER=user
+MARIADB_PASSWORD=secret
+MARIADB_ALLOW_EMPTY_PASSWORD=yes

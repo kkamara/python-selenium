@@ -1,0 +1,3 @@
+{
+  "python.defaultInterpreterPath": "${env:HOME}/workspace/django-boilerplate/env/bin/python"
+}

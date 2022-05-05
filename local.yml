@@ -1,0 +1,70 @@
+version: '3.9'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: drb_local_django
+    container_name: drb_local_django
+    platform: linux/x86_64
+    depends_on:
+      - mariadb
+      - mailhog
+      - selenium
+    volumes:
+      - .:/app:z
+    env_file:
+      - .env
+      - ./.envs/.local/.django
+      - ./.envs/.local/.mariadb
+    ports:
+      - "80:80"
+    command: /start
+    networks:
+      - djangoapp
+
+  mariadb:
+    container_name: drb_local_mariadb
+    image: 'mariadb:10.7'
+    ports:
+      - '3306:3306'
+    env_file:
+      - ./.envs/.local/.mariadb
+    volumes:
+      - 'localmariadb:/var/lib/mysql'
+    networks:
+      - djangoapp
+
+  mailhog:
+    container_name: drb_local_mailhog
+    restart: unless-stopped
+    restart: always
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025 
+    networks:
+      - djangoapp
+
+  selenium:
+    container_name: drb_local_selenium
+    image: 'selenium/standalone-chrome'
+    environment:
+        - SE_NODE_MAX_SESSIONS=1
+        - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+        - START_XVFB=false
+    ports:
+        - '4444:4444'
+    volumes:
+        - '/dev/shm:/dev/shm'
+    networks:
+      - djangoapp
+
+networks:
+  djangoapp:
+    driver: bridge
+
+volumes:
+  localmariadb:
+    driver: local

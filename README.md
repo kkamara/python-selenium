@@ -1,35 +1,65 @@
-# Selenium Py
+<img src="https://github.com/kkamara/useful/raw/main/selenium-py.png" alt="selenium-py.png" />
 
-Automate web browsing with Chrome. 
+# selenium-py
 
-## Requirements
-
-- [Docker](https://docs.docker.com/engine/install/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
-- [Python 3](https://www.python.org/downloads/)
+Automate web browsing with Chrome.
 
 ## Setup
 
 ```bash
-pip3 install virtualenv
-virtualenv env
-source env/bin/activate
-(env) pip3 install -r requirements.txt
+cp .env.example .env
+pip3 install virtualenv && \
+  virtualenv env && \
+  source env/bin/activate
+alias compose='docker-compose -f local.yml'
+compose build
+compose up
 ```
 
-## Build Selenium Container
-
-```
-docker-compose up --build -d
-```
-You will get a selenium grid that you can view at `http://localhost:4444/grid/console`.
+The app runs at `http://localhost` and `http://localhost:80`.
 
 ## Usage
-```
-python3 python src/main.py
+
+```bash
+python3 manage.py crawlamazon
 ```
 
-This is a base from which you can continue testing with Selenium.
+## iPython Django Shell
+
+```bash
+python3 manage.py shell -i ipython
+```
+
+## API
+
+```bash
+python manage.py show_urls
+```
+
+View the api collection [here](https://documenter.getpostman.com/view/17125932/UVyxQYrt).
+
+## Admin
+
+Admin creds are set in [./compose/local/django/start](https://raw.githubusercontent.com/kkamara/django-app/develop/compose/local/django/start)
+
+```bash
+export DJANGO_SUPERUSER_PASSWORD=secret
+
+python manage.py createsuperuser \
+  --username admin_user \
+  --email admin@django-app.com \
+  --no-input \
+  --first_name Admin \
+  --last_name User
+```
+
+## Mail Server
+
+![docker-mailhog.png](https://raw.githubusercontent.com/kkamara/useful/main/docker-mailhog.png)
+
+Mail environment credentials are at [.env](https://raw.githubusercontent.com/kkamara/django-app/develop/.env.example).
+
+The [mailhog](https://github.com/mailhog/MailHog) docker image runs at `http://localhost:8025`.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

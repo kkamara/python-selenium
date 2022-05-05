@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+export DJANGO_SUPERUSER_PASSWORD=secret
+
+rm -rf static 2>/dev/null || true
+python manage.py collectstatic --no-input
+python manage.py makemigrations
+python manage.py migrate --fake-initial
+python manage.py createsuperuser \
+  --username admin_user \
+  --email admin@django-app.com \
+  --no-input \
+  --first_name Admin \
+  --last_name User 2>/dev/null || true
+python manage.py runserver 0.0.0.0:80
