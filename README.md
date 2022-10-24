@@ -21,7 +21,7 @@ The app runs at `http://localhost` and `http://localhost:80`.
 ## Usage
 
 ```bash
-python3 manage.py crawlamazon
+compose up --build -d && python3 manage.py crawlamazon
 ```
 
 ## iPython Django Shell
