@@ -19,7 +19,7 @@ services:
       - ./.envs/.local/.django
       - ./.envs/.local/.mariadb
     ports:
-      - "80:80"
+      - "8000:8000"
     command: /start
     networks:
       - djangoapp
