@@ -63,6 +63,10 @@ Mail environment credentials are at [.env](https://raw.githubusercontent.com/kka
 
 The [mailhog](https://github.com/mailhog/MailHog) docker image runs at `http://localhost:8025`.
 
+## Misc
+
+[See python amazon scraper.](https://github.com/kkamara/python-amazon-scraper)
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
