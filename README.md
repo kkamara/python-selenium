@@ -20,6 +20,8 @@ The app runs at `http://localhost` and `http://localhost:80`.
 
 ## Usage
 
+Edit command at [./management/commands/crawlamazon.py](https://github.com/kkamara/selenium-py/blob/main/seleniumpy/management/commands/crawlamazon.py)
+
 ```bash
 compose up --build -d && python3 manage.py crawlamazon
 ```
