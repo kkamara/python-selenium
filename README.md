@@ -16,7 +16,7 @@ compose build
 compose up
 ```
 
-The app runs at `http://localhost` and `http://localhost:80`.
+The app runs at `http://localhost:8000`.
 
 ## Usage
 
