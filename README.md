@@ -67,7 +67,7 @@ The [mailhog](https://github.com/mailhog/MailHog) docker image runs at `http://l
 
 [See python amazon scraper.](https://github.com/kkamara/python-amazon-scraper)
 
-[See django react boilerplate.](https://github.com/kkamara/django-react-boilerplate)
+[See python react boilerplate.](https://github.com/kkamara/django-react-boilerplate)
 
 [See amazon scraper.](https://github.com/kkamara/amazon-scraper)
 
