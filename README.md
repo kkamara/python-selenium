@@ -1,6 +1,6 @@
 <img src="https://github.com/kkamara/useful/raw/main/selenium-py.png" alt="selenium-py.png" />
 
-# selenium-py
+# python-selenium
 
 Automate web browsing with Chrome.
 
