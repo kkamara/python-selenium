@@ -1,3 +1,5 @@
 {
-  "python.defaultInterpreterPath": "${env:HOME}/workspace/django-boilerplate/env/bin/python"
+  "python.analysis.extraPaths": [
+    "/Users/kel/workspace/python-selenium/.venv/bin"
+  ]
 }
