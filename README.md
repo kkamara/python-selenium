@@ -18,6 +18,8 @@ Automate web browsing with Chrome.
 
 * [Admin](#admin)
 
+* [Cache react app & view templates](#cache-templates)
+
 * [Mail Server](#mail-server)
 
 * [Misc](#misc)
@@ -93,6 +95,12 @@ python manage.py createsuperuser \
   --no-input \
   --first_name Admin \
   --last_name User
+```
+
+## Cache react app & view templates <a name="cache-templates"></a>
+
+```bash
+py3 manage.py collectstatic
 ```
 
 ## Mail Server
