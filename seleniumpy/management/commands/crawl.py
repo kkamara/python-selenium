@@ -49,5 +49,4 @@ class Command(BaseCommand):
             raise CommandError(str(e))
 
     def screenshot(self, browser, name='example'):
-        browser.save_screenshot(
-            os.path.abspath(os.path.join(__file__, f'../../../../screenshots/{name}.png')))
+        browser.save_screenshot(f'./screenshots/{name}.png')
