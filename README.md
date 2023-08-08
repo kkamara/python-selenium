@@ -58,7 +58,7 @@ compose build
 compose up
 ```
 
-The app runs at `http://localhost:8000`.
+The app runs at `http://localhost:3000`.
 
 ## Usage
 
@@ -67,6 +67,8 @@ Update the command at [./management/commands/crawlamazon.py](https://raw.githubu
 ```bash
 compose up --build -d && python3 manage.py crawlamazon
 ```
+
+If you still need help installing and running the app check out the readme at https://github.com/kkamara/python-react-boilerplate which is the base system for this python-selenium app.
 
 ## iPython Django Shell
 
