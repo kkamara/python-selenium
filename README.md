@@ -44,7 +44,7 @@ We're able to cover 20, 000 sites / night / machine.
 
 ## Proven in a production environment <a name="proven"></a>
 
-Use this section if you are not working with Docker.
+Use this section if you are not working with Docker. You are only concerned with the installation of chromedriver.
 
 [Getting up and running on amazon ec2 cross-platform win, mac, linux.](https://raw.githubusercontent.com/kkamara/php-scraper/develop/scripts/setup-project.sh)
 
