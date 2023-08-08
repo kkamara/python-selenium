@@ -2,15 +2,15 @@
 
 # python-selenium
 
-Automate web browsing with Chrome.
+(2021) See your Python code do web browsing on your screen with GUI.
 
 * [Important note:](#note)
-
-* [Proven in a production environment](#proven)
 
 * [Installation](#installation)
 
 * [Usage](#usage)
+
+* [Using docker](#using-docker)
 
 * [iPython Django Shell](#ipython-django-shell)
 
@@ -42,14 +42,6 @@ I've successfully tested 1000 site crawls in a single process (3 hours, 44 minut
 
 We're able to cover 20, 000 sites / night / machine. 
 
-## Proven in a production environment <a name="proven"></a>
-
-Use this section if you are not working with Docker. You are only concerned with the installation of chromedriver.
-
-[Getting up and running on amazon ec2 cross-platform win, mac, linux.](https://raw.githubusercontent.com/kkamara/php-scraper/develop/scripts/setup-project.sh)
-
-[Getting up and running on amazon ec2 (old).](https://raw.githubusercontent.com/kkamara/amazon-scraper/develop/scripts/setup-project.sh)
-
 ## Installation
 
 ```bash
@@ -57,22 +49,40 @@ cp .env.example .env
 pip3 install virtualenv && \
   virtualenv env && \
   source env/bin/activate
-alias compose='docker-compose -f local.yml'
-compose build
-compose up
 ```
 
-The app runs at `http://localhost:3000`.
+```bash
+# chromedriver_mac64
+# chromedriver_win32
+# See https://chromedriver.storage.googleapis.com
+# for drivers list.
+wget https://chromedriver.storage.googleapis.com/2.37/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
+sudo mv chromedriver /usr/bin/chromedriver
+chromedriver --version
+```
 
 ## Usage
 
-Update the command at [./management/commands/crawlamazon.py](https://raw.githubusercontent.com/kkamara/selenium-py/main/seleniumpy/management/commands/crawlamazon.py)
+[XPath cheat sheet](https://devhints.io/xpath).
+
+Update the command at [./management/commands/crawl.py](https://raw.githubusercontent.com/kkamara/selenium-py/main/seleniumpy/management/commands/crawl.py)
 
 ```bash
-compose up --build -d && python3 manage.py crawlamazon
+alias py3="python3"
+py3 manage.py crawl
+# The app runs at `http://localhost:3000`.
 ```
 
 If you still need help installing and running the app check out the readme at https://github.com/kkamara/python-react-boilerplate which is the base system for this python-selenium app.
+
+## Using Docker?
+
+alias compose='docker-compose -f local.yml'
+compose build
+compose up
+# Automated runs with Docker:
+# compose up --build -d && python3 manage.py crawl
 
 ## iPython Django Shell
 
