@@ -16,4 +16,4 @@ python manage.py createsuperuser \
   --no-input \
   --first_name Admin \
   --last_name User 2>/dev/null || true
-python manage.py runserver 0.0.0.0:80
+python manage.py runserver 0.0.0.0:3000

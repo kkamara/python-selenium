@@ -1,7 +1,6 @@
 export default class HttpService
 {
-    url = "https://lrb-app.herokuapp.com/api"
-    // url = "http://localhost:80/api"
+    url = "http://localhost:3000/api"
 
     postData = async (item, added_url, tokenId="") => {
         let requestOptions = this.postRequestOptions({ item, })

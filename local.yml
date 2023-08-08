@@ -16,10 +16,8 @@ services:
       - .:/app:z
     env_file:
       - .env
-      - ./.envs/.local/.django
-      - ./.envs/.local/.mariadb
     ports:
-      - "8000:8000"
+      - "3000:3000"
     command: /start
     networks:
       - djangoapp
