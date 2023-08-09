@@ -18,8 +18,6 @@ env = environ.Env(
   DEBUG=(bool,False)
 )
 
-SELENIUM_HEADLESS=env('SELENIUM_HEADLESS', False)
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +37,8 @@ if 'production' != APP_ENV:
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
+
+SELENIUM_HEADLESS = env('SELENIUM_HEADLESS', False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
