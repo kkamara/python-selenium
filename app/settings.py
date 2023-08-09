@@ -39,6 +39,10 @@ if 'production' != APP_ENV:
 SECRET_KEY = env('SECRET_KEY')
 
 SELENIUM_HEADLESS = env('SELENIUM_HEADLESS', False)
+if SELENIUM_HEADLESS == 'True':
+  SELENIUM_HEADLESS = True
+else:
+  SELENIUM_HEADLESS = False
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
