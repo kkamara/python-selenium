@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.conf import settings
 
 import os
 import json
@@ -21,7 +22,8 @@ class Command(BaseCommand):
             userAgent = 'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.1+ (KHTML, like Gecko) Version/10.0.0.1337 Mobile Safari/537.1+'
             chrome_options.add_argument('--user-agent='+userAgent)
             # Uncomment next line to remove GUI.
-            # chrome_options.add_argument('--headless')
+            if settings.SELENIUM_HEADLESS == True:
+                chrome_options.add_argument('--headless')
             browser = webdriver.Chrome(options=chrome_options)
             
             browser.get('https://www.kelvinkamara.com')
