@@ -1,4 +1,4 @@
-name: Tests Pipeline
+name: Web Crawling Pipeline
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
 
 jobs:
   build:
-    name: Tests Pipeline (Python ${{ matrix.python-version }})
-    runs-on: ubuntu-latest
+    name: Web Crawling Pipeline (Python ${{ matrix.python-version }})
+    runs-on: macos-latest
 
     strategy:
       max-parallel: 4
@@ -27,7 +27,6 @@ jobs:
         ports:
           - 3306/tcp
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-      
       redis:
         image: redis
         options: >-
@@ -44,12 +43,33 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: actions/checkout@v2
+    - uses: nanasess/setup-chromedriver@v2
+      with:
+        chromedriver-version: '2.37.544337'
+    - run: |
+        export DISPLAY=:99
+        chromedriver --url-base=/wd/hub &
+        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+    
+    - name: Create environment file
+      run: cp .env.testing .env
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Create environment file
-      run: cp .env.testing .env
-    - name: Run Tests
+    - name: See your Python code do web browsing on your screen with GUI
       run: |
-        python manage.py test
+        python manage.py crawl
+    - name: Upload Screenshots
+          if: failure()
+          uses: actions/upload-artifact@v2
+          with:
+            name: screenshots
+            path: screenshots
+    - name: Upload Console Logs
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: logs
+        path: logs
