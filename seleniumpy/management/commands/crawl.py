@@ -22,8 +22,10 @@ class Command(BaseCommand):
             userAgent = 'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.1+ (KHTML, like Gecko) Version/10.0.0.1337 Mobile Safari/537.1+'
             chrome_options.add_argument('--user-agent='+userAgent)
             # Use SELENIUM_HEADLESS in .env to remove GUI.
-            if settings.SELENIUM_HEADLESS == True:
+            if settings.SELENIUM_HEADLESS == True or settings.APP_ENV == 'testing':
                 chrome_options.add_argument('--headless')
+            if settings.APP_ENV == 'testing':
+                chrome_options.add_argument('--disable-dev-shm-usage')
             browser = webdriver.Chrome(options=chrome_options)
             
             browser.get('https://www.kelvinkamara.com')
