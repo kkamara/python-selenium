@@ -38,7 +38,7 @@ if 'production' != APP_ENV:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
-SELENIUM_HEADLESS = env('SELENIUM_HEADLESS', False)
+SELENIUM_HEADLESS = env('SELENIUM_HEADLESS')
 if SELENIUM_HEADLESS == 'True':
   SELENIUM_HEADLESS = True
 else:

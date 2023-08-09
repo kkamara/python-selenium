@@ -39,7 +39,7 @@ class Command(BaseCommand):
             el = browser.find_element(By.XPATH, "//input[@id='name']")
             el.send_keys('gdpr'+Keys.ENTER)
             
-            time.sleep(60)
+            time.sleep(1)
 
             browser.quit()
             self.stdout.write(self.style.SUCCESS('Success'))
