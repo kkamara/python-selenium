@@ -61,8 +61,3 @@ jobs:
     - name: See your Python code do web browsing on your screen with GUI
       run: |
         python manage.py crawl
-    - name: Upload Screenshots
-      uses: actions/upload-artifact@v3
-      with:
-        name: screenshots
-        path: screenshots
