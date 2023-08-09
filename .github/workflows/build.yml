@@ -62,11 +62,11 @@ jobs:
       run: |
         python manage.py crawl
     - name: Upload Screenshots
-          if: failure()
-          uses: actions/upload-artifact@v2
-          with:
-            name: screenshots
-            path: screenshots
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: screenshots
+        path: screenshots
     - name: Upload Console Logs
       if: failure()
       uses: actions/upload-artifact@v2
