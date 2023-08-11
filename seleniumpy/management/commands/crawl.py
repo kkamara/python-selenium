@@ -4,6 +4,7 @@ from django.conf import settings
 import os
 import json
 import time
+import logging
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -13,6 +14,10 @@ class Command(BaseCommand):
     help = 'help text'
 
     def handle(self, *args, **options):
+        '''
+        The Selenium Python Documentation:
+            https://www.selenium.dev/documentation/
+        '''
         try:
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument('--disable-extensions')
@@ -30,16 +35,19 @@ class Command(BaseCommand):
             
             browser.get('https://www.kelvinkamara.com')
 
-            self.screenshot(browser, 'debug')
+            self.screenshot(browser, name='debug')
 
             if 'Thisisnotinpagesource.' in browser.page_source:
                 raise RuntimeError('We were detected.')            
             time.sleep(1)
 
-            browser.find_element(By.XPATH, "//a[@id='contact-me-link']").click()
-            
-            el = browser.find_element(By.XPATH, "//input[@id='name']")
-            el.send_keys('gdpr'+Keys.ENTER)
+            browser.find_element(
+                By.XPATH, "//a[@id='contact-me-link']").click()
+
+            el = browser.find_element(
+                By.XPATH, "//a[@href='tel:+447956694595'][2]")
+            self.screenshot(browser, el=el, name='number')
+            el.click()
             
             time.sleep(1)
 
@@ -52,5 +60,8 @@ class Command(BaseCommand):
                 pass
             raise CommandError(str(e))
 
-    def screenshot(self, browser, name='example'):
+    def screenshot(self, browser, el=None, name='example'):
         browser.save_screenshot(f'./screenshots/{name}.png')
+        if el:
+            test = browser.execute_script('return arguments[0].innerText', el)
+            logging.info(test)
