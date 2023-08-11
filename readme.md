@@ -78,11 +78,13 @@ If you still need help installing and running the app check out the readme at ht
 
 ## Using Docker?
 
+```bash
 alias compose='docker-compose -f local.yml'
 compose build
 compose up
 # Automated runs with Docker:
 # compose up --build -d && python3 manage.py crawl
+```
 
 ## iPython Django Shell
 
