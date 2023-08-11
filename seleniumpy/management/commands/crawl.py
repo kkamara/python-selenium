@@ -24,8 +24,8 @@ class Command(BaseCommand):
             chrome_options.add_argument('--disable-gpu')
             chrome_options.add_argument('--no-sandbox')
             chrome_options.add_argument('--disable-blink-features=AutomationControlled')
-            userAgent = 'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.1+ (KHTML, like Gecko) Version/10.0.0.1337 Mobile Safari/537.1+'
-            chrome_options.add_argument('--user-agent='+userAgent)
+            user_agent = 'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.1+ (KHTML, like Gecko) Version/10.0.0.1337 Mobile Safari/537.1+'
+            chrome_options.add_argument('--user-agent='+user_agent)
             # Use SELENIUM_HEADLESS in .env to remove GUI.
             if settings.SELENIUM_HEADLESS == True or settings.APP_ENV == 'testing':
                 chrome_options.add_argument('--headless')
