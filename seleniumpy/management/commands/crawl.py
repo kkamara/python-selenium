@@ -63,5 +63,5 @@ class Command(BaseCommand):
     def screenshot(self, browser, el=None, name='example'):
         browser.save_screenshot(f'./screenshots/{name}.png')
         if el:
-            test = browser.execute_script('return arguments[0].innerText', el)
-            logging.info(test)
+            el_text = browser.execute_script('return arguments[0].innerText', el)
+            logging.info(el_text)
