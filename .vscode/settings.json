@@ -1,5 +1,5 @@
 {
   "python.analysis.extraPaths": [
-    "/Users/kel/workspace/python-selenium/.venv/bin"
+    "${env:HOME}/workspace/python-selenium/.venv/bin"
   ]
 }
