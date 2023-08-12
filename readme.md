@@ -10,7 +10,7 @@
 
 * [Usage](#usage)
 
-* [Using docker](#using-docker)
+* [Using Docker](#using-docker)
 
 * [iPython Django Shell](#ipython-django-shell)
 
