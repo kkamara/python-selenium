@@ -45,11 +45,6 @@ class Command(BaseCommand):
 
             browser.find_element(
                 By.XPATH, "//a[@id='contact-me-link']").click()
-
-            el = browser.find_element(
-                By.XPATH, "//a[@href='tel:+447956694595'][2]")
-            self.screenshot(browser, el=el, name='number')
-            el.click()
             
             time.sleep(1)
 
