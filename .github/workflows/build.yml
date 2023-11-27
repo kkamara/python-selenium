@@ -45,8 +45,6 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - uses: actions/checkout@v2
     - uses: nanasess/setup-chromedriver@v2
-      with:
-        chromedriver-version: '115.0.5790.110'
     - run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
