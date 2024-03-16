@@ -39,6 +39,7 @@ cp .env.example .env
 pip install virtualenv && \
   virtualenv env && \
   source env/bin/activate
+pip install -r requirements.txt
 python3 manage.py migrate
 ```
 
