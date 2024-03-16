@@ -2,7 +2,7 @@
 
 # python-selenium
 
-(2021) See your Python code do web browsing on your screen with GUI.
+(2021) See your Python code do web browsing on your screen with GUI. I highly recommend working with Linux (including virtual machines) or MacOs.
 
 * [Important note:](#note)
 
