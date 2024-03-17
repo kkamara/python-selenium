@@ -38,12 +38,13 @@ Before you try to scrape any website, go through its robots.txt file. You can ac
 
 ```bash
 cp .env.example .env
-pip install virtualenv && \
-  virtualenv env && \
+python3 -m venv env && \
   source env/bin/activate
 pip install -r requirements.txt
 python3 manage.py migrate
 ```
+
+#### Add chromedriver to Path
 
 ```bash
 # chromedriver_mac64
