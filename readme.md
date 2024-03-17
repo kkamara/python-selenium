@@ -44,6 +44,8 @@ python3 manage.py migrate
 
 #### Add chromedriver to Path
 
+Make sure Chromedriver is installed and added to your environment Path.
+
 ```bash
 # chromedriver_mac64
 # chromedriver_win32
@@ -51,7 +53,7 @@ python3 manage.py migrate
 # for drivers list.
 wget https://chromedriver.storage.googleapis.com/2.37/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip
-sudo mv chromedriver /usr/bin/chromedriver
+sudo mv chromedriver /usr/local/bin/chromedriver
 chromedriver --version
 ```
 
