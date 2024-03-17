@@ -1,6 +1,4 @@
-#### This project is now deprecated. Please use [PHP Scraper](https://github.com/kkamara/php-scraper).
-
-<img src="https://github.com/kkamara/useful/raw/main/selenium-py.png" alt="selenium-py.png" />
+<img src="https://github.com/kkamara/useful/raw/main/php-scraper.gif" alt="php-scraper.gif" />
 
 # python-selenium
 
