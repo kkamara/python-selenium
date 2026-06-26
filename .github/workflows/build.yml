@@ -43,7 +43,7 @@ jobs:
     - name: Create environment file
       run: cp .env.testing .env
     - name: Install Dependencies
-      run: pip install -rvq --no-input requirements.txt
+      run: pip install --no-input -vqr requirements.txt
     - name: See your Python code do web browsing on your screen with GUI
       run: python manage.py crawl
     - name: Upload Screenshots
