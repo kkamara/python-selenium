@@ -27,12 +27,12 @@ class Command(BaseCommand):
             logging.info(f"Using User Agent : {user_agent}")
             chrome_options.add_argument(f"--user-agent={user_agent}")
             # Use SELENIUM_HEADLESS in .env to remove GUI.
-            if settings.SELENIUM_HEADLESS or settings.APP_ENV == "testing":
+            if settings.SELENIUM_HEADLESS or "testing" == settings.APP_ENV:
                 chrome_options.add_argument("--headless")
-            if settings.APP_ENV == "testing":
+            if "testing" == settings.APP_ENV:
                 chrome_options.add_argument("--disable-dev-shm-usage")
 
-            if settings.APP_ENV == "testing":
+            if "testing" == settings.APP_ENV:
                 browser = webdriver.Chrome(options=chrome_options)
             else:
                 browser = webdriver.Remote(
