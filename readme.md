@@ -41,7 +41,7 @@ Before you try to scrape any website, go through its robots.txt file. You can ac
 ## Requirements
 
 * [Tested using Python 3.13](https://www.python.org)
-* [Chromedriver](https://developer.chrome.com/docs/chromedriver)
+* [Chromedriver](https://developer.chrome.com/docs/chromedriver) (optional)
 * [Selenium Server JAR file](https://www.selenium.dev/documentation/grid/getting_started)
 
 ## Installation
