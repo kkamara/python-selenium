@@ -1,4 +1,4 @@
-<img src="https://github.com/kkamara/useful/raw/main/php-scraper.gif" alt="php-scraper.gif" />
+<img src="https://github.com/kkamara/useful/blob/main/python-selenium.gif?raw=true" alt="python-selenium.gif" />
 
 # python-selenium
 
