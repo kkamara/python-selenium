@@ -14,11 +14,11 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.11]
+        python-version: [3.13]
     
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: 'secret'
           MYSQL_DATABASE: 'python_selenium'
@@ -27,35 +27,23 @@ jobs:
         ports:
           - 3306/tcp
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-      redis:
-        image: redis
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 6379:6379
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v7
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v7
       with:
         python-version: ${{ matrix.python-version }}
-    - uses: actions/checkout@v2
-    - uses: nanasess/setup-chromedriver@v2
+    - uses: nanasess/setup-chromedriver@v3
     - run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
+        # Xvfb is case-sensitive
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
-    
     - name: Create environment file
       run: cp .env.testing .env
     - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      run: pip install -rvq --no-input requirements.txt
     - name: See your Python code do web browsing on your screen with GUI
       run: python manage.py crawl
     - name: Upload Screenshots

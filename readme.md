@@ -6,7 +6,13 @@
 
 * [Important note:](#note)
 
+* [Requirements](#requirements)
+
 * [Installation](#installation)
+
+    * [Configure This Project](#configure-this-project)
+
+    * [Run Your Selenium Server Jar File](#run-your-selenium-server-jar-file)
 
 * [Usage](#usage)
 
@@ -30,45 +36,46 @@
 
 ## Important note: <a name="note"></a>
 
-Before you try to scrape any website, go through its robots.txt file. You can access it via `domainname/robots.txt`. There, you will see a list of pages allowed and disallowed for scraping. You should not violate any terms of service of any website you scrape. 
+Before you try to scrape any website, go through its robots.txt file. You can access it via `domainname/robots.txt`. There, you will see a list of pages allowed and disallowed for scraping. You should not violate any terms of service of any website you scrape.
+
+## Requirements
+
+* [Tested using Python 3.13](https://www.python.org)
+* [Chromedriver](https://developer.chrome.com/docs/chromedriver)
+* [Selenium Server JAR file](https://www.selenium.dev/documentation/grid/getting_started)
 
 ## Installation
 
+#### Configure This Project
+
 ```bash
 cp .env.example .env
-python3 -m venv env && \
+python -m venv env && \
   source env/bin/activate
 pip install -r requirements.txt
-python3 manage.py migrate
+python manage.py makemigrations 
+python manage.py migrate
 ```
 
-#### Add chromedriver to Path
+#### Run Your Selenium Server JAR File
 
-Make sure Chromedriver is installed and added to your environment Path.
+Locate where you downloaded your Selenium Server JAR file in the [requirements](#requirements) step and run the following.
 
 ```bash
-# chromedriver_mac64
-# chromedriver_win32
-# See https://chromedriver.storage.googleapis.com
-# for drivers list.
-wget https://chromedriver.storage.googleapis.com/2.37/chromedriver_linux64.zip
-unzip chromedriver_linux64.zip
-sudo mv chromedriver /usr/local/bin/chromedriver
-chromedriver --version
+java -jar selenium-server-[version].jar standalone --override-max-sessions true --max-sessions 10
 ```
+
+[CLI options in the Selenium Grid](https://www.selenium.dev/documentation/grid/configuration/cli_options/).
 
 ## Usage
 
 [XPath cheat sheet](https://devhints.io/xpath).
 
-Update the command at [crawl.py](https://github.com/kkamara/python-selenium/blob/main/seleniumpy/management/commands/crawl.py)
+Update the command at [crawl.py](https://github.com/kkamara/python-selenium/blob/main/seleniumpy/management/commands/crawl.py) to perform your instructions in web scraping.
 
 ```bash
-alias py="python3"
-py manage.py crawl
+python manage.py crawl
 ```
-
-If you still need help installing and running the app check out the readme at https://github.com/kkamara/python-react-boilerplate which is the base system for this python-selenium app.
 
 ## Using Docker?
 
@@ -77,7 +84,7 @@ alias compose='docker-compose -f local.yml'
 compose build
 compose up
 # Automated runs with Docker:
-# compose up --build -d && python3 manage.py crawl
+# compose up --build -d && python manage.py crawl
 ```
 
 ## iPython Django Shell

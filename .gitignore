@@ -285,3 +285,4 @@ migrations/
 nohup.out
 screenshots/
 tmp
+/env

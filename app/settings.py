@@ -15,7 +15,8 @@ from pathlib import Path
 import os
 
 env = environ.Env(
-  DEBUG=(bool,False)
+  DEBUG=(bool,False),
+  CONNECTION=(str, None),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,11 +39,7 @@ if 'production' != APP_ENV:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
-SELENIUM_HEADLESS = env('SELENIUM_HEADLESS')
-if SELENIUM_HEADLESS == 'True':
-  SELENIUM_HEADLESS = True
-else:
-  SELENIUM_HEADLESS = False
+SELENIUM_HEADLESS = env.bool('SELENIUM_HEADLESS', default=False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
@@ -227,17 +224,21 @@ SITE_NAME = 'Django App'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('MARIADB_DATABASE'),
-        'USER': env('MARIADB_USER'),
-        'PASSWORD': env('MARIADB_PASSWORD'),
-        'HOST': env('MARIADB_HOST'),
-        'PORT': env('MARIADB_PORT'),
+if env.str("CONNECTION") is None or env.str("CONNECTION") == "sqlite":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
-
-if 'production' == APP_ENV:
-  import django_on_heroku
-  django_on_heroku.settings(locals())
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": env("MARIADB_DATABASE"),
+            "USER": env("MARIADB_USER"),
+            "PASSWORD": env("MARIADB_PASSWORD"),
+            "HOST": env("MARIADB_HOST"),
+            "PORT": env("MARIADB_PORT"),
+        }
+    }
