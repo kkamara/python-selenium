@@ -47,12 +47,12 @@ jobs:
     - name: See your Python code do web browsing on your screen with GUI
       run: python manage.py crawl
     - name: Upload Screenshots
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v7
       with:
         name: screenshots
         path: screenshots
     - name: Upload Logs
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v7
       with:
         name: logs
         path: logs
