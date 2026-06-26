@@ -31,9 +31,14 @@ class Command(BaseCommand):
                 chrome_options.add_argument("--headless")
             if settings.APP_ENV == "testing":
                 chrome_options.add_argument("--disable-dev-shm-usage")
-            browser = webdriver.Remote(
-                command_executor="http://127.0.0.1:4444/wd/hub", options=chrome_options
-            )
+
+            if settings.APP_ENV == "testing":
+                browser = webdriver.Chrome(options=chrome_options)
+            else:
+                browser = webdriver.Remote(
+                    command_executor="http://127.0.0.1:4444/wd/hub",
+                    options=chrome_options,
+                )
 
             browser.get("https://www.kelvinkamara.com")
 
