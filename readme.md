@@ -69,13 +69,13 @@ java -jar selenium-server-[version].jar standalone --override-max-sessions true 
 
 ## Usage
 
-[XPath cheat sheet](https://devhints.io/xpath).
-
 Update the command at [crawl.py](./seleniumpy/management/commands/crawl.py) to perform your instructions in web scraping.
 
 ```bash
 python manage.py crawl
 ```
+
+[XPath element selector cheat sheet](https://devhints.io/xpath).
 
 ## Using Docker?
 
