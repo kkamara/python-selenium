@@ -99,8 +99,6 @@ py manage.py shell -i ipython
 py manage.py show_urls
 ```
 
-View the api collection [here](https://documenter.getpostman.com/view/17125932/UVyxQYrt).
-
 ## Admin
 
 Admin creds are set in [./compose/local/django/start](https://raw.githubusercontent.com/kkamara/python-selenium/main/compose/local/django/start).
