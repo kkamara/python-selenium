@@ -2,7 +2,7 @@
 
 # python-selenium
 
-(30-Mar-2021) See your Python code do web browsing on your screen with GUI.
+💻 (30-Mar-2021) See your Python code do web browsing on your screen with GUI.
 
 * [Important note:](#note)
 
