@@ -4,7 +4,7 @@
 
 💻 (30-Mar-2021) See your Python code do web browsing on your screen with GUI.
 
-* [Important note:](#note)
+* [Important note](#important-note)
 
 * [Requirements](#requirements)
 
@@ -24,7 +24,7 @@
 
 * [Admin](#admin)
 
-* [Cache react app & view templates](#cache-templates)
+* [Cache react app & view templates](#cache-react-app--view-templates)
 
 * [Mail Server](#mail-server)
 
@@ -34,7 +34,7 @@
 
 * [License](#license)
 
-## Important note: <a name="note"></a>
+## Important note:
 
 Before you try to scrape any website, go through its robots.txt file. You can access it via `domainname/robots.txt`. There, you will see a list of pages allowed and disallowed for scraping. You should not violate any terms of service of any website you scrape.
 
@@ -114,7 +114,7 @@ py manage.py createsuperuser \
   --last_name User
 ```
 
-## Cache react app & view templates <a name="cache-templates"></a>
+## Cache react app & view templates
 
 ```bash
 py manage.py collectstatic
