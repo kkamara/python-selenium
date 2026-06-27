@@ -103,7 +103,7 @@ View the api collection [here](https://documenter.getpostman.com/view/17125932/U
 
 ## Admin
 
-Admin creds are set in [./compose/local/django/start](https://raw.githubusercontent.com/kkamara/python-selenium/main/compose/local/django/start)
+Admin creds are set in [./compose/local/django/start](https://raw.githubusercontent.com/kkamara/python-selenium/main/compose/local/django/start).
 
 ```bash
 export DJANGO_SUPERUSER_PASSWORD=secret
