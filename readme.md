@@ -71,7 +71,7 @@ java -jar selenium-server-[version].jar standalone --override-max-sessions true 
 
 [XPath cheat sheet](https://devhints.io/xpath).
 
-Update the command at [crawl.py](https://github.com/kkamara/python-selenium/blob/main/seleniumpy/management/commands/crawl.py) to perform your instructions in web scraping.
+Update the command at [crawl.py](./seleniumpy/management/commands/crawl.py) to perform your instructions in web scraping.
 
 ```bash
 python manage.py crawl
@@ -126,7 +126,7 @@ py manage.py collectstatic
 
 ![docker-mailhog.png](https://raw.githubusercontent.com/kkamara/useful/main/docker-mailhog.png)
 
-Mail environment credentials are at [.env](https://raw.githubusercontent.com/kkamara/python-selenium/main/.env.example).
+Mail environment credentials are at [.env](./.env.example).
 
 The [mailhog](https://github.com/mailhog/MailHog) docker image runs at `http://localhost:8025`.
 
