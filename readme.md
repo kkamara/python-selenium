@@ -119,7 +119,7 @@ py manage.py shell -i ipython
 py manage.py show_urls
 ```
 
-## Cache react app & view templates
+## Cache View Templates
 
 ```bash
 py manage.py collectstatic
