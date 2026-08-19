@@ -1,52 +1,49 @@
-version: '3.9'
-
 services:
   django:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    image: drb_local_django
-    container_name: drb_local_django
+    image: python_boilerplate_local_django
+    container_name: python_boilerplate_local_django
     platform: linux/x86_64
     depends_on:
       - mariadb
       - mailhog
-      - selenium
     volumes:
       - .:/app:z
     env_file:
       - .env
     ports:
-      - "3000:3000"
+      - "8000:8000"
     command: /start
     networks:
-      - djangoapp
+      - python_boilerplate_app
 
   mariadb:
-    container_name: drb_local_mariadb
+    container_name: python_boilerplate_local_mariadb
     image: 'mariadb:10.7'
     ports:
       - '3306:3306'
-    env_file:
-      - ./.envs/.local/.mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-secret}
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-python_boilerplate}
     volumes:
       - 'localmariadb:/var/lib/mysql'
     networks:
-      - djangoapp
+      - python_boilerplate_app
 
   mailhog:
-    container_name: drb_local_mailhog
+    container_name: python_boilerplate_local_mailhog
     restart: unless-stopped
-    restart: always
     image: mailhog/mailhog
     ports:
       - 1025:1025
       - 8025:8025 
     networks:
-      - djangoapp
+      - python_boilerplate_app
 
   selenium:
-    container_name: drb_local_selenium
+    container_name: python_boilerplate_local_selenium
     image: 'selenium/standalone-chrome'
     environment:
         - SE_NODE_MAX_SESSIONS=1
@@ -57,10 +54,10 @@ services:
     volumes:
         - '/dev/shm:/dev/shm'
     networks:
-      - djangoapp
+      - python_boilerplate_app
 
 networks:
-  djangoapp:
+  python_boilerplate_app:
     driver: bridge
 
 volumes:

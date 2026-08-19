@@ -4,16 +4,14 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-export DJANGO_SUPERUSER_PASSWORD=secret
+export DJANGO_SUPERUSER_PASSWORD="${DJANGO_SUPERUSER_PASSWORD:-secret}"
 
 rm -rf static 2>/dev/null || true
-python manage.py collectstatic --no-input
-python manage.py makemigrations
+# python manage.py collectstatic --no-input # commented because this makes the server render old static files and so Django will overlook your changes if static/ is present
+# python manage.py makemigrations  # run manually and commit migrations
 python manage.py migrate --fake-initial
 python manage.py createsuperuser \
-  --username admin_user \
-  --email admin@django-app.com \
   --no-input \
-  --first_name Admin \
-  --last_name User 2>/dev/null || true
-python manage.py runserver 0.0.0.0:3000
+  --username admin_user \
+  --email admin@django-app.com 2>/dev/null || true
+python manage.py runserver 0.0.0.0:8000

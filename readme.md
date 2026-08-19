@@ -16,19 +16,17 @@
 
 * [Usage](#usage)
 
-* [Using Docker](#using-docker)
+* [Using Docker?](#using-docker)
+
+    * [Existing Admin User When Using Docker](#existing-admin-user-when-using-docker)
+
+    * [Using Docker's Mail Server](#using-dockers-mail-server)
 
 * [iPython Django Shell](#ipython-django-shell)
 
 * [API](#api)
 
-* [Admin](#admin)
-
-* [Cache react app & view templates](#cache-react-app--view-templates)
-
-* [Mail Server](#mail-server)
-
-* [Misc](#misc)
+* [Cache View Templates](#cache-view-templates)
 
 * [Contributing](#contributing)
 
@@ -88,6 +86,27 @@ compose up
 # compose up --build -d && python manage.py crawl
 ```
 
+#### Existing Admin User When Using Docker
+
+The admin user details are set in [./compose/local/django/start](./compose/local/django/start).
+
+```bash
+export DJANGO_SUPERUSER_PASSWORD="${DJANGO_SUPERUSER_PASSWORD:-secret}"
+
+python manage.py createsuperuser \
+  --no-input \
+  --username admin_user \
+  --email admin@django-app.com
+```
+
+#### Using Docker's Mail Server
+
+<img src="https://raw.githubusercontent.com/kkamara/useful/main/docker-mailhog.png" alt="docker-mailhog.png" width="300px"/>
+
+Mail environment credentials are at [.env](./.env.example).
+
+The [Mailhog](https://github.com/mailhog/MailHog) Docker mail client runs at `http://localhost:8025`. This is running in the above image that is receiving emails from your Django app.
+
 ## iPython Django Shell
 
 ```bash
@@ -100,46 +119,11 @@ py manage.py shell -i ipython
 py manage.py show_urls
 ```
 
-## Admin
-
-Admin creds are set in [./compose/local/django/start](https://raw.githubusercontent.com/kkamara/python-selenium/main/compose/local/django/start).
-
-```bash
-export DJANGO_SUPERUSER_PASSWORD=secret
-
-py manage.py createsuperuser \
-  --username admin_user \
-  --email admin@django-app.com \
-  --no-input \
-  --first_name Admin \
-  --last_name User
-```
-
 ## Cache react app & view templates
 
 ```bash
 py manage.py collectstatic
 ```
-
-## Mail Server
-
-![docker-mailhog.png](https://raw.githubusercontent.com/kkamara/useful/main/docker-mailhog.png)
-
-Mail environment credentials are at [.env](./.env.example).
-
-The [mailhog](https://github.com/mailhog/MailHog) docker image runs at `http://localhost:8025`.
-
-## Misc
-
-[See Python Amazon Scraper.](https://github.com/kkamara/python-amazon-scraper)
-
-[See Python ReactJS Boilerplate.](https://github.com/kkamara/python-reactjs-boilerplate)
-
-[See PHP Scraper.](https://github.com/kkamara/php-scraper)
-
-[See PHP ReactJS Boilerplate.](https://github.com/kkamara/python-reactjs-boilerplate)
-
-[See Amazon Scraper.](https://github.com/kkamara/amazon-scraper)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
