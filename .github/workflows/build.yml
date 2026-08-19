@@ -41,7 +41,9 @@ jobs:
         # Xvfb is case-sensitive
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
     - name: Create environment file
-      run: cp .env.testing .env
+      run: |
+        cp .env.example .env
+        sed -i "s/APP_ENV=local/APP_ENV=testing/g" .env
     - name: Install Dependencies
       run: pip install --no-input -vqr requirements.txt
     - name: See your Python code do web browsing on your screen with GUI

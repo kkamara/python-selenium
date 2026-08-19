@@ -34,8 +34,6 @@ class Command(BaseCommand):
                 chrome_options.add_argument("--headless")
             if "testing" == settings.APP_ENV:
                 chrome_options.add_argument("--disable-dev-shm-usage")
-
-            if "testing" == settings.APP_ENV:
                 browser = webdriver.Chrome(options=chrome_options)
             else:
                 browser = webdriver.Remote(
