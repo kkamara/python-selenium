@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.9-slim-bullseye
+ARG PYTHON_VERSION=3.13-slim-bullseye
 
 # define an alias for the specfic python version used in this file.
 FROM python:${PYTHON_VERSION} as python
@@ -7,6 +7,7 @@ FROM python:${PYTHON_VERSION} as python
 # Python build stage
 FROM python as python-build-stage
 
+# Prevents Python from writing __pycache__ files to disk
 ENV PYTHONDONTWRITEBYTECODE 1
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -32,6 +33,7 @@ FROM python as python-run-stage
 
 ARG BUILD_ENVIRONMENT
 ENV PYTHONUNBUFFERED 1
+# Prevents Python from writing __pycache__ files to disk
 ENV PYTHONDONTWRITEBYTECODE 1
 
 RUN apt-get update && apt-get install --no-install-recommends -y \

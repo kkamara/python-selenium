@@ -1,4 +1,4 @@
-FROM garland/aws-cli-docker:1.15.47
+FROM amazon/aws-cli:2
 
 COPY ./compose/production/aws/maintenance /usr/local/bin/maintenance
 

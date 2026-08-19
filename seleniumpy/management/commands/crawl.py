@@ -1,12 +1,14 @@
-from django.core.management.base import BaseCommand, CommandError
-from django.conf import settings
-
-import time
 import logging
 import random
+import time
 
+from django.conf import settings
+from django.core.management.base import BaseCommand, CommandError
 from selenium import webdriver
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.by import By
+
+logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -17,6 +19,7 @@ class Command(BaseCommand):
         The Selenium Python Documentation:
             https://www.selenium.dev/documentation/
         """
+        browser = None
         try:
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument("--disable-extensions")
@@ -24,15 +27,13 @@ class Command(BaseCommand):
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-blink-features=AutomationControlled")
             user_agent = self.get_random_user_agent()
-            logging.info(f"Using User Agent : {user_agent}")
+            logger.info(f"Using User Agent : {user_agent}")
             chrome_options.add_argument(f"--user-agent={user_agent}")
             # Use SELENIUM_HEADLESS in .env to remove GUI.
             if settings.SELENIUM_HEADLESS or "testing" == settings.APP_ENV:
                 chrome_options.add_argument("--headless")
             if "testing" == settings.APP_ENV:
                 chrome_options.add_argument("--disable-dev-shm-usage")
-
-            if "testing" == settings.APP_ENV:
                 browser = webdriver.Chrome(options=chrome_options)
             else:
                 browser = webdriver.Remote(
@@ -54,18 +55,19 @@ class Command(BaseCommand):
 
             browser.quit()
             self.stdout.write(self.style.SUCCESS("Success"))
-        except Exception as e:
-            try:
-                browser.quit()
-            except Exception:
-                pass
+        except (RuntimeError, TimeoutError, TypeError, ValueError, WebDriverException) as e:
+            if browser is not None:
+                try:
+                    browser.quit()
+                except WebDriverException:
+                    logger.exception("Failed to close the browser during cleanup")
             raise CommandError(str(e))
 
     def screenshot(self, browser, el=None, name="example"):
         browser.save_screenshot(f"./screenshots/{name}.png")
         if el:
             el_text = browser.execute_script("return arguments[0].innerText", el)
-            logging.info(el_text)
+            logger.info(el_text)
 
     def get_random_user_agent(self):
         user_agents = [

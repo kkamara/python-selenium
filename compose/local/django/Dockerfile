@@ -1,10 +1,10 @@
-ARG PYTHON_VERSION=3.9-slim-bullseye
+ARG PYTHON_VERSION=3.13-slim-bookworm
 
-# define an alias for the specfic python version used in this file.
-FROM python:${PYTHON_VERSION} as python
+# define an alias for the specific python version used in this file.
+FROM python:${PYTHON_VERSION} AS python
 
 # Python build stage
-FROM python as python-build-stage
+FROM python AS python-build-stage
 
 ARG BUILD_ENVIRONMENT=local
 
@@ -15,8 +15,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 # mysql dependencies
 RUN apt-get install -y libpq-dev \
   python3-dev \
-  default-libmysqlclient-dev \
-  mariadb-server
+  default-libmysqlclient-dev
 
 # Requirements are installed here to ensure they will be cached.
 COPY requirements.txt .
@@ -27,14 +26,15 @@ RUN pip wheel --wheel-dir /usr/src/app/wheels  \
 
 
 # Python 'run' stage
-FROM python as python-run-stage
+FROM python AS python-run-stage
 
 ARG BUILD_ENVIRONMENT=local
 ARG APP_HOME=/app
 
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV BUILD_ENV ${BUILD_ENVIRONMENT}
+ENV PYTHONUNBUFFERED=1
+# Prevents Python from writing __pycache__ files to disk
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV BUILD_ENV=${BUILD_ENVIRONMENT}
 
 WORKDIR ${APP_HOME}
 
