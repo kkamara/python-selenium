@@ -35,7 +35,9 @@ class Command(RunserverCommand):
                 )
                 self.stderr.write(self.style.ERROR(f"Error details: {e}"))
                 self.stderr.write(self.style.ERROR("Exiting server startup."))
-                sys.exit(1)
+                raise OperationalError(
+                    f"Database connection failed for alias '{db_alias}': {e}"
+                ) from e
 
         # If all databases pass, hand execution back to the standard runserver logic
         return super().execute(*args, **options)
