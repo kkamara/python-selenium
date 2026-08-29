@@ -1,6 +1,6 @@
-<img src="https://raw.githubusercontent.com/kkamara/useful/main/python-selenium.gif" alt="python-selenium.gif" />
+<img src="https://raw.githubusercontent.com/kkamara/useful/main/python-scraper.gif" alt="python-scraper.gif" />
 
-# python-selenium
+# python-scraper
 
 💻 (30-Mar-2021) See your Python code do web browsing on your screen with GUI.
 
